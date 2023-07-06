@@ -1,6 +1,7 @@
 import InputField from "components/fields/InputField";
-import { FcGoogle } from "react-icons/fc";
+// import { FcGoogle } from "react-icons/fc";
 import Checkbox from "components/checkbox";
+import { Link } from "react-router-dom";
 
 export default function SignIn() {
   return (
@@ -13,7 +14,7 @@ export default function SignIn() {
         <p className="mb-9 ml-1 text-base text-gray-600">
           Enter your email and password to sign in!
         </p>
-        <div className="mb-6 flex h-[50px] w-full items-center justify-center gap-2 rounded-xl bg-lightPrimary hover:cursor-pointer dark:bg-navy-800">
+        {/* <div className="mb-6 flex h-[50px] w-full items-center justify-center gap-2 rounded-xl bg-lightPrimary hover:cursor-pointer dark:bg-navy-800">
           <div className="rounded-full text-xl">
             <FcGoogle />
           </div>
@@ -25,7 +26,7 @@ export default function SignIn() {
           <div className="h-px w-full bg-gray-200 dark:bg-navy-700" />
           <p className="text-base text-gray-600 dark:text-white"> or </p>
           <div className="h-px w-full bg-gray-200 dark:bg-navy-700" />
-        </div>
+        </div> */}
         {/* Email */}
         <InputField
           variant="auth"
@@ -53,12 +54,12 @@ export default function SignIn() {
               Keep me logged In
             </p>
           </div>
-          <a
+          {/* <a
             className="text-sm font-medium text-brand-500 hover:text-brand-600 dark:text-white"
             href=" "
           >
             Forgot Password?
-          </a>
+          </a> */}
         </div>
         <button className="linear mt-2 w-full rounded-xl bg-brand-500 py-[12px] text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200">
           Sign In
@@ -67,12 +68,12 @@ export default function SignIn() {
           <span className=" text-sm font-medium text-navy-700 dark:text-gray-600">
             Not registered yet?
           </span>
-          <a
-            href=" "
+          <Link
+            to="/auth/sign-up"
             className="ml-1 text-sm font-medium text-brand-500 hover:text-brand-600 dark:text-white"
           >
             Create an account
-          </a>
+          </Link>
         </div>
       </div>
     </div>
