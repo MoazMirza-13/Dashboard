@@ -1,5 +1,5 @@
-// Custom components
 import React from "react";
+import { Field } from "formik";
 
 function InputField(props) {
   const { label, id, extra, type, placeholder, variant, state, disabled } =
@@ -15,12 +15,13 @@ function InputField(props) {
       >
         {label}
       </label>
-      <input
+      <Field
         disabled={disabled}
         type={type}
         id={id}
+        name={id}
         placeholder={placeholder}
-        className={`mt-2 flex h-12 w-full items-center justify-center rounded-xl border bg-white/0 p-3 text-sm outline-none ${
+        className={`mt-2 flex h-12 w-full items-center justify-center rounded-xl border bg-white/0 p-3 text-sm outline-none focus:border-brand-600 ${
           disabled === true
             ? "!border-none !bg-gray-100 dark:!bg-white/5 dark:placeholder:!text-[rgba(255,255,255,0.15)]"
             : state === "error"
@@ -30,6 +31,7 @@ function InputField(props) {
             : "border-gray-200 dark:!border-white/10 dark:text-white"
         }`}
       />
+      {/* Display error message if any */}
     </div>
   );
 }
