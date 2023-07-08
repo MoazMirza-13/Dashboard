@@ -31,9 +31,9 @@ function InputField(props) {
           ${
             disabled === true
               ? "!border-none !bg-gray-100 dark:!bg-white/5 dark:placeholder:!text-[rgba(255,255,255,0.15)]"
-              : "border-gray-200 dark:!border-white/10 dark:text-white"
+              : "border-gray-200 dark:border-white/10 dark:text-white"
           }
-           dark:!border-white/10 dark:text-white
+           dark:border-white/10 dark:text-white
           `}
         />
         {props.error && (
