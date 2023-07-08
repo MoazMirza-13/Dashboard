@@ -34,7 +34,7 @@ export default function SignIn() {
       onSubmit={handleSubmit}
     >
       {(formikProps) => (
-        <div className="mt-16 mb-16 flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-start">
+        <div className="flex  h-full w-full items-center justify-center px-2 md:mx-0 md:mt-16 md:px-0 lg:mb-10 lg:items-center lg:justify-start">
           {/* Sign in section */}
           <Form className="mt-[10vh] w-full max-w-full flex-col items-center md:pl-4 lg:pl-0 xl:max-w-[420px]">
             <h4 className="mb-2.5 text-4xl font-bold text-navy-700 dark:text-white">
@@ -52,11 +52,12 @@ export default function SignIn() {
               id="email"
               name="email"
               type="email"
+              error={formikProps.touched.email && formikProps.errors.email}
             />
             <ErrorMessage
               name="email"
               component="p"
-              className="text-sm text-red-500"
+              className="ml-2 text-sm text-red-500"
             />
 
             {/* Password */}
@@ -83,7 +84,7 @@ export default function SignIn() {
             <div>
               <button
                 type="submit"
-                className={`linear mt-2 w-full rounded-xl bg-brand-500 py-[12px] text-base font-medium text-white transition duration-200 ${
+                className={`linear mt-2 w-full rounded-xl bg-brand-500 py-[12px] text-base font-medium text-white transition duration-200 dark:bg-brand-400 ${
                   !formikProps.isValid
                     ? ""
                     : "hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:hover:bg-brand-300 dark:active:bg-brand-200"
