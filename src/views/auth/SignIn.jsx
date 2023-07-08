@@ -16,17 +16,23 @@ export default function SignIn() {
 
   const handleSubmit = (values, { setSubmitting }) => {
     setLoading(true);
-    const storedEmail = localStorage.getItem("email");
-    const storedPassword = localStorage.getItem("password");
+
+    const storedUsers = JSON.parse(localStorage.getItem("users")) || [];
+
     setTimeout(() => {
-      if (values.email === storedEmail && values.password === storedPassword) {
+      const user = storedUsers.find(
+        (user) =>
+          user.email === values.email && user.password === values.password
+      );
+
+      if (user) {
         console.log("Welcome!");
       } else {
         console.log("Invalid email or password.");
       }
+
       setLoading(false);
       setSubmitting(false);
-      //
     }, 2000);
   };
 

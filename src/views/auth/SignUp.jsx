@@ -6,7 +6,8 @@ import { useState } from "react";
 import { Oval } from "react-loader-spinner";
 
 export default function SignUp() {
-  let [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const initialValues = {
     name: "",
@@ -32,8 +33,33 @@ export default function SignUp() {
     setLoading(true);
 
     setTimeout(() => {
-      localStorage.setItem("email", values.email);
-      localStorage.setItem("password", values.password);
+      const storedUsers = JSON.parse(localStorage.getItem("users")) || [];
+
+      const existingUser = storedUsers.find(
+        (user) => user.email === values.email
+      );
+
+      if (existingUser) {
+        setErrorMessage(
+          "This email is already being used, try a different email."
+        );
+        setSubmitting(false);
+        setTimeout(() => {
+          setErrorMessage("");
+        }, 4000);
+        setLoading(false);
+        return;
+      }
+
+      const newUser = {
+        email: values.email,
+        password: values.password,
+      };
+
+      storedUsers.push(newUser);
+
+      localStorage.setItem("users", JSON.stringify(storedUsers));
+
       setLoading(false);
       setSubmitting(false);
     }, 2000);
@@ -86,6 +112,9 @@ export default function SignUp() {
               component="p"
               className="ml-2 text-sm text-red-500"
             />
+            {errorMessage && (
+              <p className="ml-2 text-sm text-red-500">{errorMessage}</p>
+            )}
 
             {/* Password */}
             <InputField
