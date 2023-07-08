@@ -1,6 +1,6 @@
 import InputField from "components/fields/InputField";
 import Checkbox from "components/checkbox";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Formik, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { Oval } from "react-loader-spinner";
@@ -12,7 +12,10 @@ const validationSchema = Yup.object().shape({
 });
 
 export default function SignIn() {
+  const navigate = useNavigate();
+
   let [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = (values, { setSubmitting }) => {
     setLoading(true);
@@ -26,9 +29,13 @@ export default function SignIn() {
       );
 
       if (user) {
-        console.log("Welcome!");
+        navigate("/admin/default");
       } else {
-        console.log("Invalid email or password.");
+        setErrorMessage("You have entered an invalid email or password.");
+        setSubmitting(false);
+        setTimeout(() => {
+          setErrorMessage("");
+        }, 3000);
       }
 
       setLoading(false);
@@ -55,6 +62,10 @@ export default function SignIn() {
             <p className="mb-9 ml-1 text-base text-gray-600">
               Enter your email and password to sign in!
             </p>
+            {/* errormsg */}
+            {errorMessage && (
+              <p className="ml-2 text-red-500">{errorMessage}</p>
+            )}
             {/* Email */}
             <InputField
               variant="auth"
