@@ -16,8 +16,14 @@ export default function SignIn() {
 
   const handleSubmit = (values, { setSubmitting }) => {
     setLoading(true);
-
+    const storedEmail = localStorage.getItem("email");
+    const storedPassword = localStorage.getItem("password");
     setTimeout(() => {
+      if (values.email === storedEmail && values.password === storedPassword) {
+        console.log("Welcome!");
+      } else {
+        console.log("Invalid email or password.");
+      }
       setLoading(false);
       setSubmitting(false);
       //

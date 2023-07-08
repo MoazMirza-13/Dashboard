@@ -30,13 +30,15 @@ export default function SignUp() {
 
   const handleSubmit = (values, { setSubmitting }) => {
     setLoading(true);
-    console.log(values);
+
     setTimeout(() => {
+      localStorage.setItem("email", values.email);
+      localStorage.setItem("password", values.password);
       setLoading(false);
       setSubmitting(false);
-      //
     }, 2000);
   };
+
   return (
     <div className="flex  h-full w-full items-center justify-center px-2 md:mx-0 md:mt-4 md:px-0  lg:items-center lg:justify-start">
       <Formik
