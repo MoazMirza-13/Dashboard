@@ -26,6 +26,8 @@ const App = () => {
     }
   }, [navigate]);
 
+  const userLoggedIn = localStorage.getItem("userLoggedIn") === "true";
+
   return (
     <div>
       {loading ? (
@@ -35,7 +37,13 @@ const App = () => {
       ) : (
         <Routes>
           <Route path="auth/*" element={<AuthSignInLayout />} />
-          <Route path="admin/*" element={<AdminLayout />} />
+          {!userLoggedIn && (
+            <Route
+              path="admin/*"
+              element={<Navigate to="/auth/sign-in" replace />}
+            />
+          )}
+          {userLoggedIn && <Route path="admin/*" element={<AdminLayout />} />}
           <Route path="rtl/*" element={<RtlLayout />} />
           <Route path="/" element={<Navigate to="/auth/sign-in" replace />} />
         </Routes>
