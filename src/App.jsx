@@ -13,19 +13,18 @@ const App = () => {
     setloading(true);
     setTimeout(() => {
       setloading(false);
-    }, 2000);
+    }, 2500);
   }, []);
 
-  const userStatus = localStorage.getItem("userLoggedIn") === "true";
   const navigate = useNavigate();
 
   useEffect(() => {
+    const userStatus = localStorage.getItem("userLoggedIn") === "true";
+
     if (userStatus) {
       navigate("/admin/default");
-    } else {
-      navigate("/auth/sign-in");
     }
-  }, [userStatus, navigate]);
+  }, [navigate]);
 
   return (
     <div>
