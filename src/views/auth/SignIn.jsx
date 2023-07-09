@@ -1,5 +1,5 @@
 import InputField from "components/fields/InputField";
-import Checkbox from "components/checkbox";
+// import Checkbox from "components/checkbox";
 import { Link, useNavigate } from "react-router-dom";
 import { Formik, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -30,6 +30,7 @@ export default function SignIn() {
 
       if (user) {
         navigate("/admin/default");
+        localStorage.setItem("userLoggedIn", "true");
       } else {
         setErrorMessage("You have entered an invalid email or password.");
         setSubmitting(false);
@@ -96,14 +97,14 @@ export default function SignIn() {
             />
 
             {/* Checkbox */}
-            <div className="mb-4 flex items-center justify-between px-2">
+            {/* <div className="mb-4 flex items-center justify-between px-2">
               <div className="flex items-center">
                 <Checkbox />
                 <p className="ml-2 text-sm font-medium text-navy-700 dark:text-white">
                   Keep me logged In
                 </p>
               </div>
-            </div>
+            </div> */}
             <div>
               <button
                 type="submit"

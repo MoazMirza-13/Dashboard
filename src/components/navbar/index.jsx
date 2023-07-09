@@ -16,6 +16,10 @@ const Navbar = (props) => {
   const { onOpenSidenav, brandText } = props;
   const [darkmode, setDarkmode] = React.useState(false);
 
+  const handleLogout = () => {
+    localStorage.removeItem("userLoggedIn");
+  };
+
   return (
     <nav className="sticky top-4 z-40 flex flex-row flex-wrap items-center justify-between rounded-xl bg-white/10 p-2 backdrop-blur-xl dark:bg-[#0b14374d]">
       <div className="ml-[6px]">
@@ -179,13 +183,13 @@ const Navbar = (props) => {
         <Dropdown
           button={
             <img
-              className="h-10 w-10 rounded-full"
+              className="h-10 w-10 cursor-pointer rounded-full"
               src={avatar}
               alt="Elon Musk"
             />
           }
           children={
-            <div className="flex w-56 flex-col justify-start rounded-[20px] bg-white bg-cover bg-no-repeat shadow-xl shadow-shadow-500 dark:!bg-navy-700 dark:text-white dark:shadow-none">
+            <div className="flex w-56  flex-col justify-start rounded-[20px] bg-white bg-cover bg-no-repeat shadow-xl shadow-shadow-500 dark:!bg-navy-700 dark:text-white dark:shadow-none">
               <div className="p-4">
                 <div className="flex items-center gap-2">
                   <p className="text-sm font-bold text-navy-700 dark:text-white">
@@ -208,12 +212,13 @@ const Navbar = (props) => {
                 >
                   Newsletter Settings
                 </a>
-                <a
-                  href=" "
+                <Link
+                  onClick={handleLogout}
+                  to="../auth/sign-in"
                   className="mt-3 text-sm font-medium text-red-500 hover:text-red-500"
                 >
                   Log Out
-                </a>
+                </Link>
               </div>
             </div>
           }

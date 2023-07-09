@@ -1,8 +1,8 @@
 import InputField from "components/fields/InputField";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Formik, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Oval } from "react-loader-spinner";
 
 export default function SignUp() {
@@ -29,6 +29,14 @@ export default function SignUp() {
       .required("Enter Your Password")
       .oneOf([Yup.ref("password")], "Passwords must match"),
   });
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    const isLoggedIn = localStorage.getItem("userLoggedIn") === "true";
+    if (isLoggedIn) {
+      navigate("/admin/default");
+    }
+  }, [navigate]);
 
   const handleSubmit = (values, { setSubmitting }) => {
     setLoading(true);
