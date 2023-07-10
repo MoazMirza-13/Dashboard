@@ -1,22 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Navbar from "components/navbar";
 import Sidebar from "components/sidebar";
 import Footer from "components/footer/Footer";
 import routes from "routes.js";
+import DataContext from "../admin/datacontext";
+import axios from "axios";
 
-export default function Admin(props) {
+const Admin = (props) => {
   const { ...rest } = props;
   const location = useLocation();
-  const [open, setOpen] = React.useState(true);
-  const [currentRoute, setCurrentRoute] = React.useState("Main Dashboard");
+  const [open, setOpen] = useState(true);
+  const [currentRoute, setCurrentRoute] = useState("Main Dashboard");
+  const [data, setData] = useState(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     window.addEventListener("resize", () =>
       window.innerWidth < 1200 ? setOpen(false) : setOpen(true)
     );
   }, []);
-  React.useEffect(() => {
+
+  useEffect(() => {
     getActiveRoute(routes);
   }, [location.pathname]);
 
@@ -33,6 +37,24 @@ export default function Admin(props) {
     }
     return activeRoute;
   };
+
+  useEffect(() => {
+    if (!data) {
+      fetchData();
+    }
+  });
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(
+        "https://fakerapi.it/api/v1/custom?_quantity=1&earnings=number&thisMonth=number&sales=number&yourBalance=number&newTask=number&totalProjects=number"
+      );
+      setData(response.data.data[0]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const getActiveNavbar = (routes) => {
     let activeNavbar = false;
     for (let i = 0; i < routes.length; i++) {
@@ -44,6 +66,7 @@ export default function Admin(props) {
     }
     return activeNavbar;
   };
+
   const getRoutes = (routes) => {
     return routes.map((prop, key) => {
       if (prop.layout === "/admin") {
@@ -57,40 +80,41 @@ export default function Admin(props) {
   };
 
   document.documentElement.dir = "ltr";
-  return (
-    <div className="flex h-full w-full">
-      <Sidebar open={open} onClose={() => setOpen(false)} />
-      {/* Navbar & Main Content */}
-      <div className="h-full w-full bg-lightPrimary dark:!bg-navy-900">
-        {/* Main Content */}
-        <main
-          className={`mx-[12px] h-full flex-none transition-all md:pr-2 xl:ml-[313px]`}
-        >
-          {/* Routes */}
-          <div className="h-full">
-            <Navbar
-              onOpenSidenav={() => setOpen(true)}
-              logoText={"Horizon UI Tailwind React"}
-              brandText={currentRoute}
-              secondary={getActiveNavbar(routes)}
-              {...rest}
-            />
-            <div className="pt-5s mx-auto mb-auto h-full min-h-[84vh] p-2 md:pr-2">
-              <Routes>
-                {getRoutes(routes)}
 
-                <Route
-                  path="/"
-                  element={<Navigate to="/admin/default" replace />}
-                />
-              </Routes>
+  return (
+    <DataContext.Provider value={{ data, setData }}>
+      <div className="flex h-full w-full">
+        <Sidebar open={open} onClose={() => setOpen(false)} />
+        <div className="h-full w-full bg-lightPrimary dark:!bg-navy-900">
+          <main
+            className={`mx-[12px] h-full flex-none transition-all md:pr-2 xl:ml-[313px]`}
+          >
+            <div className="h-full">
+              <Navbar
+                onOpenSidenav={() => setOpen(true)}
+                logoText={"H"}
+                brandText={currentRoute}
+                secondary={getActiveNavbar(routes)}
+                {...rest}
+              />
+              <div className="pt-5s mx-auto mb-auto h-full min-h-[84vh] p-2 md:pr-2">
+                <Routes>
+                  {getRoutes(routes)}
+                  <Route
+                    path="/"
+                    element={<Navigate to="/admin/default" replace />}
+                  />
+                </Routes>
+              </div>
+              <div className="p-3">
+                <Footer />
+              </div>
             </div>
-            <div className="p-3">
-              <Footer />
-            </div>
-          </div>
-        </main>
+          </main>
+        </div>
       </div>
-    </div>
+    </DataContext.Provider>
   );
-}
+};
+
+export default Admin;
