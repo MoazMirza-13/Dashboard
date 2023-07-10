@@ -1,50 +1,52 @@
 import React, { useEffect, useState } from "react";
-import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  Navigate,
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
 import RiseLoader from "react-spinners/RiseLoader";
 
-import RtlLayout from "layouts/rtl";
 import AdminLayout from "layouts/admin";
 import AuthSignInLayout from "layouts/auth-signIn";
 
 const App = () => {
-  const [loading, setloading] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const userStatus = localStorage.getItem("userLoggedIn") === "true";
 
   useEffect(() => {
-    setloading(true);
+    setLoading(true);
     setTimeout(() => {
-      setloading(false);
+      setLoading(false);
     }, 2500);
   }, []);
 
-  const navigate = useNavigate();
-
   useEffect(() => {
-    const userStatus = localStorage.getItem("userLoggedIn") === "true";
-
-    if (userStatus) {
+    if (userStatus && location.pathname.startsWith("/admin")) {
+    } else if (userStatus) {
       navigate("/admin/default");
     }
-  }, [navigate]);
-
-  const userLoggedIn = localStorage.getItem("userLoggedIn") === "true";
+  }, [location, userStatus, navigate]);
 
   return (
     <div>
       {loading ? (
-        <div className="bg-[#010201]i flex  h-screen w-screen  items-center justify-center bg-white">
+        <div className="flex h-screen w-screen items-center justify-center bg-white">
           <RiseLoader color="blue" size={30} loading={loading} />
         </div>
       ) : (
         <Routes>
           <Route path="auth/*" element={<AuthSignInLayout />} />
-          {!userLoggedIn && (
+          {!userStatus && (
             <Route
               path="admin/*"
               element={<Navigate to="/auth/sign-in" replace />}
             />
           )}
-          {userLoggedIn && <Route path="admin/*" element={<AdminLayout />} />}
-          <Route path="rtl/*" element={<RtlLayout />} />
+          {userStatus && <Route path="admin/*" element={<AdminLayout />} />}
           <Route path="/" element={<Navigate to="/auth/sign-in" replace />} />
         </Routes>
       )}
