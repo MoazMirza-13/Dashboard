@@ -31,32 +31,36 @@ const Dashboard = () => {
         <Widget
           icon={<MdBarChart className="h-7 w-7" />}
           title={"Earnings This Month"}
-          subtitle={data ? `$${data.earnings}` : null}
+          subtitle={data ? `$${String(data.earnings).substring(0, 4)}` : null}
         />
         <Widget
           icon={<IoDocuments className="h-6 w-6" />}
           title={"Spend this month"}
-          subtitle={data ? `$${data.thisMonth}` : null}
+          subtitle={data ? `$${String(data.thisMonth).substring(0, 4)}` : null}
         />
         <Widget
           icon={<MdBarChart className="h-7 w-7" />}
           title={"Total Sales"}
-          subtitle={data ? `$${data.sales}` : null}
+          subtitle={data ? `$${String(data.sales).substring(0, 4)}` : null}
         />
         <Widget
           icon={<MdDashboard className="h-6 w-6" />}
           title={"Your Balance"}
-          subtitle={data ? `$${data.yourBalance}` : null}
+          subtitle={
+            data ? `$${String(data.yourBalance).substring(0, 4)}` : null
+          }
         />
         <Widget
           icon={<MdBarChart className="h-7 w-7" />}
           title={"New Tasks"}
-          subtitle={data ? `${data.newTask}` : null}
+          subtitle={data ? `$${String(data.newTask).substring(0, 3)}` : null}
         />
         <Widget
           icon={<IoMdHome className="h-6 w-6" />}
           title={"Total Projects"}
-          subtitle={data ? `${data.totalProjects}` : null}
+          subtitle={
+            data ? `$${String(data.totalProjects).substring(0, 2)}` : null
+          }
         />
       </div>
 

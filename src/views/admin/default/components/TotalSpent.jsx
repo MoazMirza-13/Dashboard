@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+
 import {
   MdArrowDropUp,
   MdOutlineCalendarToday,
@@ -6,7 +7,7 @@ import {
 } from "react-icons/md";
 import Card from "components/card";
 import {
-  lineChartDataTotalSpent,
+  // lineChartDataTotalSpent,
   lineChartOptionsTotalSpent,
 } from "variables/charts";
 import LineChart from "components/charts/LineChart";
@@ -14,9 +15,38 @@ import LineChart from "components/charts/LineChart";
 import { useContext } from "react";
 
 import DataContext from "layouts/admin/datacontext";
+import { graphChart } from "httpService/Service";
 
 const TotalSpent = () => {
   const { data } = useContext(DataContext);
+
+  const [revenueSeries, setRevenueSeries] = useState(null);
+  const [profitSeries, setProfitSeries] = useState(null);
+
+  useEffect(() => {
+    const fetchGraphData = async () => {
+      const { revenueData, profitData } = await graphChart();
+
+      setRevenueSeries(revenueData);
+      setProfitSeries(profitData);
+    };
+
+    fetchGraphData();
+  }, []);
+
+  const graphData = [
+    {
+      name: "Revenue",
+      data: revenueSeries ? revenueSeries : [],
+      color: "#4318FF",
+    },
+    {
+      name: "Profit",
+      data: profitSeries ? profitSeries : [],
+      color: "#6AD2FF",
+    },
+  ];
+
   return (
     <Card extra="!p-[20px] text-center">
       <div className="flex justify-between">
@@ -32,24 +62,20 @@ const TotalSpent = () => {
       <div className="flex h-full w-full flex-row justify-between sm:flex-wrap lg:flex-nowrap 2xl:overflow-hidden">
         <div className="flex flex-col">
           <p className="mt-[20px] text-3xl font-bold text-navy-700 dark:text-white">
-            {data ? `$${data.earnings}` : null}
+            {data ? `$${String(data.earnings).substring(0, 4)}` : null}
           </p>
           <div className="flex flex-col items-start">
             <p className="mt-2 text-sm text-gray-600">Total Spent</p>
             <div className="flex flex-row items-center justify-center">
               <MdArrowDropUp className="font-medium text-green-500" />
               <p className="text-sm font-bold text-green-500">
-                {" "}
-                {data ? `$${data.thisMonth}` : null}{" "}
+                {data ? `$${String(data.thisMonth).substring(0, 4)}` : null}
               </p>
             </div>
           </div>
         </div>
         <div className="h-full w-full">
-          <LineChart
-            options={lineChartOptionsTotalSpent}
-            series={lineChartDataTotalSpent}
-          />
+          <LineChart options={lineChartOptionsTotalSpent} series={graphData} />
         </div>
       </div>
     </Card>
