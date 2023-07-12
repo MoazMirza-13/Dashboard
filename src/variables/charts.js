@@ -148,24 +148,6 @@ export const pieChartOptions = {
 
 export const pieChartData = [63, 25, 12];
 
-export const barChartDataWeeklyRevenue = [
-  {
-    name: "PRODUCT A",
-    data: [400, 370, 330, 390, 320, 350, 360, 320, 380],
-    color: "#6AD2Fa",
-  },
-  {
-    name: "PRODUCT B",
-    data: [400, 370, 330, 390, 320, 350, 360, 320, 380],
-    color: "#4318FF",
-  },
-  {
-    name: "PRODUCT C",
-    data: [400, 370, 330, 390, 320, 350, 360, 320, 380],
-    color: "#EFF4FB",
-  },
-];
-
 export const barChartOptionsWeeklyRevenue = {
   chart: {
     stacked: true,
@@ -255,19 +237,6 @@ export const barChartOptionsWeeklyRevenue = {
     },
   },
 };
-
-export const lineChartDataTotalSpent = [
-  {
-    name: "Revenue",
-    data: [50, 64, 48, 66, 49, 68],
-    color: "#4318FF",
-  },
-  {
-    name: "Profit",
-    data: [30, 40, 24, 46, 20, 46],
-    color: "#6AD2FF",
-  },
-];
 
 export const lineChartOptionsTotalSpent = {
   legend: {

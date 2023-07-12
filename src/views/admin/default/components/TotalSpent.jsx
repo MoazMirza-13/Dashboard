@@ -6,10 +6,7 @@ import {
   MdBarChart,
 } from "react-icons/md";
 import Card from "components/card";
-import {
-  // lineChartDataTotalSpent,
-  lineChartOptionsTotalSpent,
-} from "variables/charts";
+import { lineChartOptionsTotalSpent } from "variables/charts";
 import LineChart from "components/charts/LineChart";
 
 import { useContext } from "react";
