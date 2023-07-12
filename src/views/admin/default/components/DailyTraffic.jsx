@@ -24,7 +24,6 @@ const DailyTraffic = () => {
         dailyTrafficVisitors[0] + randomDecimal,
         ...dailyTrafficVisitors.slice(1),
       ];
-      console.log(updatedDailyTrafficData);
       setDailyTraffic(dailyTrafficData);
       setDailyTrafficVisitors(updatedDailyTrafficData);
     };

@@ -1,5 +1,4 @@
 import React, { useMemo } from "react";
-import CardMenu from "components/card/CardMenu";
 import Checkbox from "components/checkbox";
 import Card from "components/card";
 
@@ -42,8 +41,6 @@ const CheckTable = (props) => {
         <div className="text-xl font-bold text-navy-700 dark:text-white">
           Check Table
         </div>
-
-        <CardMenu />
       </header>
 
       <div className="mt-8 overflow-x-scroll xl:overflow-x-hidden">

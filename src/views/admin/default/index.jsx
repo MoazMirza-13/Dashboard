@@ -1,3 +1,4 @@
+import { useContext, useState, useEffect } from "react";
 import MiniCalendar from "components/calendar/MiniCalendar";
 import WeeklyRevenue from "views/admin/default/components/WeeklyRevenue";
 import TotalSpent from "views/admin/default/components/TotalSpent";
@@ -13,14 +14,29 @@ import CheckTable from "views/admin/default/components/CheckTable";
 import ComplexTable from "views/admin/default/components/ComplexTable";
 import DailyTraffic from "views/admin/default/components/DailyTraffic";
 import TaskCard from "views/admin/default/components/TaskCard";
-import tableDataCheck from "./variables/tableDataCheck.json";
 import tableDataComplex from "./variables/tableDataComplex.json";
 
-import { useContext } from "react";
-
 import DataContext from "layouts/admin/datacontext";
+import { checkTableData } from "httpService/Service";
 
 const Dashboard = () => {
+  const [checkTable, setCheckTable] = useState(null);
+
+  useEffect(() => {
+    const fetchCheckTableData = async () => {
+      const { tableData } = await checkTableData();
+      const updatedTableData = tableData.map((item) => ({
+        ...item,
+        progress: String(item.progress).substring(2, "0"),
+        quantity: String(item.quantity).substring(4, "0"),
+        name: [item.name, Math.random() < 0.5],
+      }));
+      setCheckTable(updatedTableData);
+    };
+
+    fetchCheckTableData();
+  }, []);
+
   const { data } = useContext(DataContext);
 
   return (
@@ -78,7 +94,7 @@ const Dashboard = () => {
         <div>
           <CheckTable
             columnsData={columnsDataCheck}
-            tableData={tableDataCheck}
+            tableData={checkTable ? checkTable : []}
           />
         </div>
 

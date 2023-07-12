@@ -58,3 +58,16 @@ export const dailyTrafficChart = async () => {
     console.log("Error:", error);
   }
 };
+//checkTableData
+export const checkTableData = async () => {
+  const url1 =
+    "https://fakerapi.it/api/v1/custom?_quantity=5&name=firstName&quantity=number&date=date&progress=number";
+  try {
+    const response1 = await axios.get(url1);
+    return {
+      tableData: response1.data.data,
+    };
+  } catch (error) {
+    console.log("Error:", error);
+  }
+};
