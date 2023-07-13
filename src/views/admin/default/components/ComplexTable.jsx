@@ -1,4 +1,3 @@
-import CardMenu from "components/card/CardMenu";
 import Card from "components/card";
 import {
   useGlobalFilter,
@@ -41,7 +40,6 @@ const ComplexTable = (props) => {
         <div className="text-xl font-bold text-navy-700 dark:text-white">
           Complex Table
         </div>
-        <CardMenu />
       </div>
 
       <div className="mt-8 overflow-x-scroll xl:overflow-hidden">
@@ -80,9 +78,9 @@ const ComplexTable = (props) => {
                       data = (
                         <div className="flex items-center gap-2">
                           <div className={`rounded-full text-xl`}>
-                            {cell.value === "Approved" ? (
+                            {cell.value === "TRUE" ? (
                               <MdCheckCircle className="text-green-500" />
-                            ) : cell.value === "Disable" ? (
+                            ) : cell.value === "FALSE" ? (
                               <MdCancel className="text-red-500" />
                             ) : cell.value === "Error" ? (
                               <MdOutlineError className="text-orange-500" />

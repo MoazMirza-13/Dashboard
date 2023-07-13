@@ -84,3 +84,16 @@ export const pieChart = async () => {
     console.log("Error:", error);
   }
 };
+// complexTableData
+export const complexTable = async () => {
+  const url1 =
+    " https://fakerapi.it/api/v1/custom?_quantity=4&name=name&status=boolean&date=date&progress=number";
+  try {
+    const response1 = await axios.get(url1);
+    return {
+      complexTableData: response1.data.data,
+    };
+  } catch (error) {
+    console.log("Error:", error);
+  }
+};

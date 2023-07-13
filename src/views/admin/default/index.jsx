@@ -14,13 +14,14 @@ import CheckTable from "views/admin/default/components/CheckTable";
 import ComplexTable from "views/admin/default/components/ComplexTable";
 import DailyTraffic from "views/admin/default/components/DailyTraffic";
 import TaskCard from "views/admin/default/components/TaskCard";
-import tableDataComplex from "./variables/tableDataComplex.json";
+// import tableDataComplex from "./variables/tableDataComplex.json";
 
 import DataContext from "layouts/admin/datacontext";
-import { checkTableData } from "httpService/Service";
+import { checkTableData, complexTable } from "httpService/Service";
 
 const Dashboard = () => {
   const [checkTable, setCheckTable] = useState(null);
+  const [complexTableValue, setComplexTableValue] = useState(null);
 
   useEffect(() => {
     const fetchCheckTableData = async () => {
@@ -35,6 +36,21 @@ const Dashboard = () => {
     };
 
     fetchCheckTableData();
+  }, []);
+
+  useEffect(() => {
+    const fetchComplexTableData = async () => {
+      const { complexTableData } = await complexTable();
+      const updatedComplexTableData = complexTableData.map((item) => ({
+        ...item,
+        progress: String(item.progress).substring(2, "0"),
+        status: String(item.status).toUpperCase(),
+      }));
+
+      setComplexTableValue(updatedComplexTableData);
+    };
+
+    fetchComplexTableData();
   }, []);
 
   const { data } = useContext(DataContext);
@@ -109,7 +125,7 @@ const Dashboard = () => {
 
         <ComplexTable
           columnsData={columnsDataComplex}
-          tableData={tableDataComplex}
+          tableData={complexTableValue ? complexTableValue : []}
         />
 
         {/* Task chart & Calendar */}
