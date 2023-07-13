@@ -71,3 +71,16 @@ export const checkTableData = async () => {
     console.log("Error:", error);
   }
 };
+// pieChartData
+export const pieChart = async () => {
+  const url1 =
+    "http://www.randomnumberapi.com/api/v1.0/random?min=20&max=80&count=3";
+  try {
+    const response1 = await axios.get(url1);
+    return {
+      pieData: response1.data,
+    };
+  } catch (error) {
+    console.log("Error:", error);
+  }
+};

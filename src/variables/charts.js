@@ -1,10 +1,3 @@
-export const barChartDataDailyTraffic = [
-  {
-    name: "Daily Traffic",
-    data: [20, 30, 40, 20, 45, 50, 30],
-  },
-];
-
 export const barChartOptionsDailyTraffic = {
   chart: {
     toolbar: {
@@ -104,7 +97,7 @@ export const barChartOptionsDailyTraffic = {
 
 export const pieChartOptions = {
   labels: ["Your files", "System", "Empty"],
-  colors: ["#4318FF", "#6AD2FF", "#EFF4FB"],
+  colors: ["#4318FF", "#6AD2FF", "silver"],
   chart: {
     width: "50px",
   },
@@ -145,8 +138,6 @@ export const pieChartOptions = {
     },
   },
 };
-
-export const pieChartData = [63, 25, 12];
 
 export const barChartOptionsWeeklyRevenue = {
   chart: {
