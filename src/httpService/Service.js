@@ -97,3 +97,24 @@ export const complexTable = async () => {
     console.log("Error:", error);
   }
 };
+// profileData
+export const profile = async () => {
+  const url1 =
+    "http://www.randomnumberapi.com/api/v1.0/random?min=80&max=250&count=1";
+  const url2 =
+    "http://www.randomnumberapi.com/api/v1.0/random?min=50&max=170&count=1";
+  const url3 =
+    "http://www.randomnumberapi.com/api/v1.0/random?min=1&max=15&count=1";
+  try {
+    const response1 = await axios.get(url1);
+    const response2 = await axios.get(url2);
+    const response3 = await axios.get(url3);
+    return {
+      posts: response1.data,
+      followers: response2.data,
+      following: response3.data,
+    };
+  } catch (error) {
+    console.log("Error:", error);
+  }
+};

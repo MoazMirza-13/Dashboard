@@ -6,6 +6,7 @@ import Footer from "components/footer/Footer";
 import routes from "routes.js";
 import DataContext from "../admin/datacontext";
 import axios from "axios";
+import { randomProfilePic } from "components/profilePic";
 
 const Admin = (props) => {
   const { ...rest } = props;
@@ -13,6 +14,7 @@ const Admin = (props) => {
   const [open, setOpen] = useState(true);
   const [currentRoute, setCurrentRoute] = useState("Main Dashboard");
   const [data, setData] = useState(null);
+  const [pic, setPic] = useState("");
 
   useEffect(() => {
     window.addEventListener("resize", () =>
@@ -79,10 +81,15 @@ const Admin = (props) => {
     });
   };
 
+  useEffect(() => {
+    const randomPic = randomProfilePic();
+    setPic(randomPic);
+  }, []);
+
   document.documentElement.dir = "ltr";
 
   return (
-    <DataContext.Provider value={{ data, setData }}>
+    <DataContext.Provider value={{ data, setData, pic }}>
       <div className="flex h-full w-full">
         <Sidebar open={open} onClose={() => setOpen(false)} />
         <div className="h-full w-full bg-lightPrimary dark:!bg-navy-900">

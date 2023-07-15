@@ -14,7 +14,6 @@ import CheckTable from "views/admin/default/components/CheckTable";
 import ComplexTable from "views/admin/default/components/ComplexTable";
 import DailyTraffic from "views/admin/default/components/DailyTraffic";
 import TaskCard from "views/admin/default/components/TaskCard";
-// import tableDataComplex from "./variables/tableDataComplex.json";
 
 import DataContext from "layouts/admin/datacontext";
 import { checkTableData, complexTable } from "httpService/Service";
