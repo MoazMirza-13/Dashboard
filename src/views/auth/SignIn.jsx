@@ -31,8 +31,8 @@ export default function SignIn() {
       if (user) {
         navigate("/admin/default");
         localStorage.setItem("userLoggedIn", "true");
-        // localStorage.setItem(values.email, "email");
         localStorage.setItem("email", JSON.stringify(values.email));
+        localStorage.setItem("name", JSON.stringify(user.name));
       } else {
         setErrorMessage("You have entered an invalid email or password.");
         setSubmitting(false);

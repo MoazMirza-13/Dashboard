@@ -4,6 +4,7 @@ import { profile } from "httpService/Service";
 
 const ProfileOverview = () => {
   const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
 
   const [posts, setPosts] = useState(null);
   const [followers, setFollowers] = useState(null);
@@ -23,16 +24,16 @@ const ProfileOverview = () => {
     fetchProfileData();
   }, []);
 
-  // useEffect(() => {
-  //   const storedEmail = JSON.parse(localStorage.getItem("email")) || [];
-
-  //   setEmail(storedEmail);
-  // }, []);
-
   useEffect(() => {
     const storedEmail = JSON.parse(localStorage.getItem("email")) || "";
     setEmail(storedEmail);
   }, []);
+
+  useEffect(() => {
+    const storedName = JSON.parse(localStorage.getItem("name")) || "";
+    setName(storedName);
+  }, []);
+
   return (
     <>
       <main className="mt-3">
@@ -49,7 +50,6 @@ const ProfileOverview = () => {
               className="bg-black absolute h-full w-full opacity-50"
             ></span>
           </div>
-          {/*  */}
           <div
             className="pointer-events-none absolute top-auto bottom-0 left-0 right-0 w-full overflow-hidden "
             style={{ height: "70px" }}
@@ -69,7 +69,6 @@ const ProfileOverview = () => {
               ></polygon>
             </svg>
           </div>
-          {/*  */}
         </section>
         <section className="relative bg-gray-300 py-16 dark:bg-navy-900 dark:text-white">
           <div className="container mx-auto px-4">
@@ -90,7 +89,7 @@ const ProfileOverview = () => {
                 </div>
                 <div className="mt-[8rem] text-center sm:mt-[11rem]">
                   <h3 className="mb-2  text-4xl font-semibold leading-normal text-gray-800 dark:text-white">
-                    Jenna Stones
+                    {name}
                   </h3>
                   <div className="mt-0 mb-2 text-xl font-bold  leading-normal text-gray-500">
                     <i className="fas fa-map-marker-alt mr-2 text-lg text-gray-500"></i>{" "}

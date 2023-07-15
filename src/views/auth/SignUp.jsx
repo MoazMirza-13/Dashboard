@@ -63,6 +63,7 @@ export default function SignUp() {
       const newUser = {
         email: values.email,
         password: values.password,
+        name: values.name,
       };
 
       storedUsers.push(newUser);
