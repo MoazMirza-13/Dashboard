@@ -74,7 +74,7 @@ export const checkTableData = async () => {
 // pieChartData
 export const pieChart = async () => {
   const url1 =
-    "http://www.randomnumberapi.com/api/v1.0/random?min=20&max=80&count=3";
+    "https://www.randomnumberapi.com/api/v1.0/random?min=20&max=80&count=3";
   try {
     const response1 = await axios.get(url1);
     return {
