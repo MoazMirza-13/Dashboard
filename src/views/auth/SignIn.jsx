@@ -65,10 +65,7 @@ export default function SignIn() {
             <p className="mb-9 ml-1 text-base text-gray-600">
               Enter your email and password to sign in!
             </p>
-            {/* errormsg */}
-            {errorMessage && (
-              <p className="ml-2 text-red-500">{errorMessage}</p>
-            )}
+
             {/* Email */}
             <InputField
               variant="auth"
@@ -98,15 +95,10 @@ export default function SignIn() {
               disabled={!formikProps.values.email || !!formikProps.errors.email}
             />
 
-            {/* Checkbox */}
-            {/* <div className="mb-4 flex items-center justify-between px-2">
-              <div className="flex items-center">
-                <Checkbox />
-                <p className="ml-2 text-sm font-medium text-navy-700 dark:text-white">
-                  Keep me logged In
-                </p>
-              </div>
-            </div> */}
+            {/* errormsg */}
+            {errorMessage && (
+              <p className="ml-2 text-red-500">{errorMessage}</p>
+            )}
             <div>
               <button
                 type="submit"
