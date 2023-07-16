@@ -23,17 +23,17 @@ const WeeklyRevenue = () => {
   const barChartData = [
     {
       name: "PRODUCT A",
-      data: productA ? productA : [],
+      data: productA,
       color: "#6AD2Fa",
     },
     {
       name: "PRODUCT B",
-      data: productB ? productB : [],
+      data: productB,
       color: "#4318FF",
     },
     {
       name: "PRODUCT C",
-      data: productC ? productC : [],
+      data: productC,
       color: "#EFF4FB",
     },
   ];
