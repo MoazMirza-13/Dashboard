@@ -100,9 +100,9 @@ export const complexTable = async () => {
 // profileData
 export const profile = async () => {
   const url1 =
-    "http://www.randomnumberapi.com/api/v1.0/random?min=80&max=250&count=1";
+    "https://www.randomnumberapi.com/api/v1.0/random?min=80&max=250&count=1";
   const url2 =
-    "http://www.randomnumberapi.com/api/v1.0/random?min=50&max=170&count=1";
+    "https://www.randomnumberapi.com/api/v1.0/random?min=50&max=170&count=1";
   const url3 =
     "http://www.randomnumberapi.com/api/v1.0/random?min=1&max=15&count=1";
   try {
