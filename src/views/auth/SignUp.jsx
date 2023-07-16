@@ -198,7 +198,7 @@ export default function SignUp() {
                 {loading && (
                   <span className="flex items-center justify-center gap-2">
                     Signing Up
-                    {loading && <Oval height="22" width="22" color="white" />}
+                    {loading && <Oval height="18" width="22" color="white" />}
                   </span>
                 )}
                 {!loading && <span>Sign Up</span>}
