@@ -82,6 +82,7 @@ export const pieChart = async () => {
     };
   } catch (error) {
     console.log("Error:", error);
+    throw new Error("Failed to fetch pie chart data");
   }
 };
 // complexTableData
