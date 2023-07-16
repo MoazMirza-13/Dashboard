@@ -30,7 +30,7 @@ const PieChartCard = () => {
     fetchPieData();
   }, []);
 
-  const pieChartData = pieValue ? pieValue : null;
+  const pieChartData = pieValue ? pieValue : [];
 
   return (
     <Card extra="rounded-[20px] p-3">

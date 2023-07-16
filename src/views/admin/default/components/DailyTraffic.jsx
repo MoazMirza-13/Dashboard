@@ -33,7 +33,7 @@ const DailyTraffic = () => {
   const dailyTrafficData = [
     {
       name: "Daily Traffic",
-      data: dailyTraffic ? dailyTraffic : null,
+      data: dailyTraffic ? dailyTraffic : [],
     },
   ];
 
