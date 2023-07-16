@@ -26,11 +26,8 @@ const ProfileOverview = () => {
 
   useEffect(() => {
     const storedEmail = JSON.parse(localStorage.getItem("email")) || "";
-    setEmail(storedEmail);
-  }, []);
-
-  useEffect(() => {
     const storedName = JSON.parse(localStorage.getItem("name")) || "";
+    setEmail(storedEmail);
     setName(storedName);
   }, []);
 
@@ -99,7 +96,7 @@ const ProfileOverview = () => {
                   <div className="mb-5.5 max-w-94 border-stroke shadow-1 dark:border-strokedark mx-auto mt-10 grid grid-cols-3 rounded-md border py-2.5 dark:bg-[#37404F]">
                     <div className="border-stroke dark:border-strokedark xsm:flex-row flex flex-col items-center justify-center gap-1 border-r px-4">
                       <span className="text-black font-semibold dark:text-white">
-                        {posts}
+                        {posts ? posts : null}
                       </span>
                       <span className="text-sm">Posts</span>
                     </div>
