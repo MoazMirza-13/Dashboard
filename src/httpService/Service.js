@@ -104,7 +104,7 @@ export const profile = async () => {
   const url2 =
     "https://www.randomnumberapi.com/api/v1.0/random?min=50&max=170&count=1";
   const url3 =
-    "http://www.randomnumberapi.com/api/v1.0/random?min=1&max=15&count=1";
+    "https://www.randomnumberapi.com/api/v1.0/random?min=1&max=15&count=1";
   try {
     const response1 = await axios.get(url1);
     const response2 = await axios.get(url2);
