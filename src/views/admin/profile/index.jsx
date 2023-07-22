@@ -1,28 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import DataContext from "layouts/admin/datacontext";
-import { profile } from "httpService/Service";
 
 const ProfileOverview = () => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
 
-  const [posts, setPosts] = useState(null);
-  const [followers, setFollowers] = useState(null);
-  const [following, setFollowing] = useState(null);
-
-  const { pic } = useContext(DataContext);
-
-  useEffect(() => {
-    const fetchProfileData = async () => {
-      const { posts, followers, following } = await profile();
-
-      setPosts(posts);
-      setFollowers(followers);
-      setFollowing(following);
-    };
-
-    fetchProfileData();
-  }, []);
+  const { pic, posts, followers, following } = useContext(DataContext);
 
   useEffect(() => {
     const storedEmail = JSON.parse(localStorage.getItem("email")) || "";

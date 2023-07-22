@@ -1,24 +1,12 @@
-import { useState, useEffect } from "react";
 import Card from "components/card";
 import BarChart from "components/charts/BarChart";
 import { barChartOptionsWeeklyRevenue } from "variables/charts";
 import { MdBarChart } from "react-icons/md";
-import { barChart } from "httpService/Service";
+import { useContext } from "react";
 
+import DataContext from "layouts/admin/datacontext";
 const WeeklyRevenue = () => {
-  const [productA, setProductA] = useState(null);
-  const [productB, setProductB] = useState(null);
-  const [productC, setProductC] = useState(null);
-
-  useEffect(() => {
-    const fetchBarChartData = async () => {
-      const { productAData, productBData, productCData } = await barChart();
-      setProductA(productAData);
-      setProductB(productBData);
-      setProductC(productCData);
-    };
-    fetchBarChartData();
-  }, []);
+  const { productA, productB, productC } = useContext(DataContext);
 
   const barChartData = [
     {

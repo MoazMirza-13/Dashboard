@@ -1,34 +1,14 @@
-import { useState, useEffect } from "react";
 import BarChart from "components/charts/BarChart";
 import { barChartOptionsDailyTraffic } from "variables/charts";
 import { MdArrowDropUp } from "react-icons/md";
 import Card from "components/card";
-import { dailyTrafficChart } from "httpService/Service";
+
+import { useContext } from "react";
+
+import DataContext from "layouts/admin/datacontext";
 
 const DailyTraffic = () => {
-  const getRandomDecimal = () => {
-    const randomNumber = Math.random();
-    const roundedNumber = Math.round(randomNumber * 100) / 100;
-    return roundedNumber;
-  };
-
-  const [dailyTraffic, setDailyTraffic] = useState(null);
-  const [dailyTrafficVisitors, setDailyTrafficVisitors] = useState(null);
-
-  useEffect(() => {
-    const fetchDailyTrafficData = async () => {
-      const { dailyTrafficData, dailyTrafficVisitors } =
-        await dailyTrafficChart();
-      const randomDecimal = getRandomDecimal();
-      const updatedDailyTrafficData = [
-        dailyTrafficVisitors[0] + randomDecimal,
-        ...dailyTrafficVisitors.slice(1),
-      ];
-      setDailyTraffic(dailyTrafficData);
-      setDailyTrafficVisitors(updatedDailyTrafficData);
-    };
-    fetchDailyTrafficData();
-  }, []);
+  const { dailyTraffic, dailyTrafficVisitors } = useContext(DataContext);
 
   const dailyTrafficData = [
     {

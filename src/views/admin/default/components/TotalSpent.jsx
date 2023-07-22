@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 import {
   MdArrowDropUp,
@@ -12,24 +12,9 @@ import LineChart from "components/charts/LineChart";
 import { useContext } from "react";
 
 import DataContext from "layouts/admin/datacontext";
-import { graphChart } from "httpService/Service";
 
 const TotalSpent = () => {
-  const { data } = useContext(DataContext);
-
-  const [revenueSeries, setRevenueSeries] = useState(null);
-  const [profitSeries, setProfitSeries] = useState(null);
-
-  useEffect(() => {
-    const fetchGraphData = async () => {
-      const { revenueData, profitData } = await graphChart();
-
-      setRevenueSeries(revenueData);
-      setProfitSeries(profitData);
-    };
-
-    fetchGraphData();
-  }, []);
+  const { data, profitSeries, revenueSeries } = useContext(DataContext);
 
   const graphData = [
     {

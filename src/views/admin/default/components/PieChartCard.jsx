@@ -1,34 +1,11 @@
-import { useState, useEffect } from "react";
 import PieChart from "components/charts/PieChart";
 import { pieChartOptions } from "variables/charts";
 import Card from "components/card";
-import { pieChart } from "httpService/Service";
+import { useContext } from "react";
 
+import DataContext from "layouts/admin/datacontext";
 const PieChartCard = () => {
-  const [pieValue, setPieValue] = useState(null);
-  const [yourFiles, setYourFiles] = useState(null);
-  const [system, setSystem] = useState(null);
-
-  useEffect(() => {
-    const fetchPieData = async () => {
-      const { pieData } = await pieChart();
-
-      const sum = pieData.reduce(
-        (accumulator, currentValue) => accumulator + currentValue,
-        0
-      );
-
-      const normalizedData = pieData.map((value) => (value / sum) * 100);
-
-      const formattedData = normalizedData.map((value) => Math.floor(value));
-
-      setPieValue(formattedData);
-      setYourFiles(formattedData[0]);
-      setSystem(formattedData[1]);
-    };
-
-    fetchPieData();
-  }, []);
+  const { pieValue, yourFiles, system } = useContext(DataContext);
 
   const pieChartData = pieValue ? pieValue : [];
 
