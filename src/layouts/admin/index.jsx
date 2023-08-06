@@ -112,7 +112,6 @@ const Admin = (props) => {
   useEffect(() => {
     const fetchGraphData = async () => {
       const { revenueData, profitData } = await graphChart();
-
       setRevenueSeries(revenueData);
       setProfitSeries(profitData);
     };
